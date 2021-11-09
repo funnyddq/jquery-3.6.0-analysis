@@ -1,0 +1,19 @@
+{
+  "name": "jquery-3.6.0-analysis",
+  "version": "1.0.0",
+  "description": "jquery-3.6.0-analysis",
+  "main": "js/jquery-3.6.0-analysis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funnyddq/jquery-3.6.0-analysis.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/funnyddq/jquery-3.6.0-analysis/issues"
+  },
+  "homepage": "https://github.com/funnyddq/jquery-3.6.0-analysis#readme"
+}
