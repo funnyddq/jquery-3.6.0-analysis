@@ -12,41 +12,76 @@
  * Date: 2021-03-02T17:08Z
  */
 
+// 查看this
+console.log('----------------------------------------');
+console.log('全局环境下的this:');
+console.log('typeof this: ' + typeof this);
+if (typeof this === 'object') {
+    console.log('this:');
+    console.log(this);
+}
+console.log('----------------------------------------');
+console.log('函数内的this:');
+(function () {
+    console.log(this);
+})();
+
 // 查看window
-console.log("typeof window: " + typeof window);
-if (typeof window === "object") {
-    console.log("window:");
+console.log('----------------------------------------');
+console.log('全局变量window:');
+console.log('typeof window: ' + typeof window);
+if (typeof window === 'object') {
+    console.log('window:');
     console.log(window);
 }
 
 // 查看global
-console.log("typeof global: " + typeof global);
-if (typeof global === "object") {
-    console.log("global:");
+console.log('----------------------------------------');
+console.log('全局变量global:');
+console.log('typeof global: ' + typeof global);
+if (typeof global === 'object') {
+    console.log('global:');
     console.log(global);
 }
 
 // 查看globalThis
-console.log("typeof globalThis: " + typeof globalThis);
-if (typeof globalThis === "object") {
-    console.log("globalThis:");
+console.log('----------------------------------------');
+console.log('全局变量globalThis:');
+console.log('typeof globalThis: ' + typeof globalThis);
+if (typeof globalThis === 'object') {
+    console.log('globalThis:');
     console.log(globalThis);
 }
 
-if (typeof window === "object" && typeof global === "object")
-    console.log("window === global : " + (window === global));
-if (typeof window === "object" && typeof globalThis === "object")
-    console.log("window === globalThis : " + (window === globalThis));
-if (typeof global === "object" && typeof globalThis === "object")
-    console.log("global === globalThis : " + (global === globalThis));
+// 查看相互关系
+console.log('----------------------------------------');
+console.log('全局环境下this、window、global、globalThis之间的关系');
+if (typeof this === 'object' && typeof window === 'object')
+    console.log('this === window : ' + (this === window));
+if (typeof this === 'object' && typeof global === 'object')
+    console.log('this === global :' + (this === global));
+if (typeof this === 'object' && typeof globalThis === 'object')
+    console.log('this === globalThis : ' + (this === globalThis));
+if (typeof window === 'object' && typeof global === 'object')
+    console.log('window === global : ' + (window === global));
+if (typeof window === 'object' && typeof globalThis === 'object')
+    console.log('window === globalThis : ' + (window === globalThis));
+if (typeof global === 'object' && typeof globalThis === 'object')
+    console.log('global === globalThis : ' + (global === globalThis));
 
 // 查看module
-console.log("typeof module: " + typeof module);
-if (typeof module === "object") {
-    console.log("module:");
+console.log('----------------------------------------');
+console.log('全局变量module:');
+console.log('typeof module: ' + typeof module);
+if (typeof module === 'object') {
+    console.log('module:');
     console.log(module);
-    console.log("module.exports");
-    console.log(module.exports);
+    if (typeof module.exports === 'object') {
+        console.log('module.exports');
+        console.log(module.exports);
+        if (typeof module.exports === 'object')
+            console.log('this === module.exports : ' + (this === module.exports));
+    }
 }
 
 ( function( global, factory ) {
@@ -87,15 +122,21 @@ if (typeof module === "object") {
 
     var getProto = Object.getPrototypeOf;
     // 查看getPrototypeOf
+    console.log('----------------------------------------');
+    console.log('查看getPrototypeOf');
     console.log("Object.hasOwnProperty('getPrototypeOf'): " + Object.hasOwnProperty('getPrototypeOf'));
 
     var slice = arr.slice;
-    // 查看getPrototypeOf
+    // 查看slice
+    console.log('----------------------------------------');
+    console.log('查看slice');
     console.log("arr.hasOwnProperty('slice'): " + arr.hasOwnProperty('slice'));
     console.log("arr.__proto__.hasOwnProperty('slice'): " + arr.__proto__.hasOwnProperty('slice'));
     console.log("Array.hasOwnProperty('slice'): " + Array.hasOwnProperty('slice'));
     console.log("Array.prototype.hasOwnProperty('slice'): " + Array.prototype.hasOwnProperty('slice'));
-    console.log("arr.__proto__ === Array.prototype: " + (arr.__proto__ === Array.prototype));
+    console.log('arr.__proto__ === Array.prototype: ' + (arr.__proto__ === Array.prototype));
+    console.log('arr instanceof Array: ' + (arr instanceof Array));
+    console.log('Array.prototype.isPrototypeOf(arr): ' + (Array.prototype.isPrototypeOf(arr)));
 
     var flat = arr.flat ? function( array ) {
         return arr.flat.call( array );
