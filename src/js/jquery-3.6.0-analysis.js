@@ -12,7 +12,6 @@
  * Date: 2021-03-02T17:08Z
  */
 
-// 查看this
 console.log('----------------------------------------');
 console.log('全局环境下的this:');
 console.log('typeof this: ' + typeof this);
@@ -26,7 +25,6 @@ console.log('函数内的this:');
     console.log(this);
 })();
 
-// 查看window
 console.log('----------------------------------------');
 console.log('全局变量window:');
 console.log('typeof window: ' + typeof window);
@@ -35,7 +33,6 @@ if (typeof window === 'object') {
     console.log(window);
 }
 
-// 查看global
 console.log('----------------------------------------');
 console.log('全局变量global:');
 console.log('typeof global: ' + typeof global);
@@ -44,7 +41,6 @@ if (typeof global === 'object') {
     console.log(global);
 }
 
-// 查看globalThis
 console.log('----------------------------------------');
 console.log('全局变量globalThis:');
 console.log('typeof globalThis: ' + typeof globalThis);
@@ -53,7 +49,6 @@ if (typeof globalThis === 'object') {
     console.log(globalThis);
 }
 
-// 查看相互关系
 console.log('----------------------------------------');
 console.log('全局环境下this、window、global、globalThis之间的关系');
 if (typeof this === 'object' && typeof window === 'object')
@@ -69,7 +64,6 @@ if (typeof window === 'object' && typeof globalThis === 'object')
 if (typeof global === 'object' && typeof globalThis === 'object')
     console.log('global === globalThis : ' + (global === globalThis));
 
-// 查看module
 console.log('----------------------------------------');
 console.log('全局变量module:');
 console.log('typeof module: ' + typeof module);
@@ -98,7 +92,9 @@ if (typeof module === 'object') {
         // e.g. var jQuery = require("jquery")(window);
         // See ticket #14549 for more info.
         module.exports = global.document ?
+            // 如果global有document属性，则直接返回jQuery函数，且不改变global
             factory( global, true ) :
+            // 如果global没有document属性，则需要传递一个包含document属性的window对象，否则报错
             function( w ) {
                 if ( !w.document ) {
                     throw new Error( "jQuery requires a window with a document" );
@@ -119,42 +115,71 @@ if (typeof module === 'object') {
     "use strict";
 
     var arr = [];
-
-    var getProto = Object.getPrototypeOf;
-    // 查看getPrototypeOf
     console.log('----------------------------------------');
-    console.log('查看getPrototypeOf');
-    console.log("Object.hasOwnProperty('getPrototypeOf'): " + Object.hasOwnProperty('getPrototypeOf'));
-
-    var slice = arr.slice;
-    // 查看slice
-    console.log('----------------------------------------');
-    console.log('查看slice');
-    console.log("arr.hasOwnProperty('slice'): " + arr.hasOwnProperty('slice'));
-    console.log("arr.__proto__.hasOwnProperty('slice'): " + arr.__proto__.hasOwnProperty('slice'));
-    console.log("Array.hasOwnProperty('slice'): " + Array.hasOwnProperty('slice'));
-    console.log("Array.prototype.hasOwnProperty('slice'): " + Array.prototype.hasOwnProperty('slice'));
+    console.log('查看arr和Array之间的关系');
     console.log('arr.__proto__ === Array.prototype: ' + (arr.__proto__ === Array.prototype));
     console.log('arr instanceof Array: ' + (arr instanceof Array));
     console.log('Array.prototype.isPrototypeOf(arr): ' + (Array.prototype.isPrototypeOf(arr)));
 
+    console.log('----------------------------------------');
+    console.log('查看getPrototypeOf');
+    console.log("Object.hasOwnProperty('getPrototypeOf'): " + Object.hasOwnProperty('getPrototypeOf'));
+    var getProto = Object.getPrototypeOf;
+
+    console.log('----------------------------------------');
+    console.log('查看slice');
+    console.log("arr.hasOwnProperty('slice'): " + arr.hasOwnProperty('slice'));
+    console.log("arr.__proto__.hasOwnProperty('slice'): " + arr.__proto__.hasOwnProperty('slice'));
+    var slice = arr.slice;
+
+    console.log('----------------------------------------');
+    console.log('查看flat');
+    console.log("arr.hasOwnProperty('flat'): " + arr.hasOwnProperty('flat'));
+    console.log("arr.__proto__.hasOwnProperty('flat'): " + arr.__proto__.hasOwnProperty('flat'));
+    console.log('查看concat');
+    console.log("arr.hasOwnProperty('concat'): " + arr.hasOwnProperty('concat'));
+    console.log("arr.__proto__.hasOwnProperty('concat'): " + arr.__proto__.hasOwnProperty('concat'));
     var flat = arr.flat ? function( array ) {
         return arr.flat.call( array );
     } : function( array ) {
         return arr.concat.apply( [], array );
     };
 
-
+    console.log('----------------------------------------');
+    console.log('查看push');
+    console.log("arr.hasOwnProperty('push'): " + arr.hasOwnProperty('push'));
+    console.log("arr.__proto__.hasOwnProperty('push'): " + arr.__proto__.hasOwnProperty('push'));
     var push = arr.push;
 
+    console.log('----------------------------------------');
+    console.log('查看indexOf');
+    console.log("arr.hasOwnProperty('indexOf'): " + arr.hasOwnProperty('indexOf'));
+    console.log("arr.__proto__.hasOwnProperty('indexOf'): " + arr.__proto__.hasOwnProperty('indexOf'));
     var indexOf = arr.indexOf;
 
     var class2type = {};
+    console.log('----------------------------------------');
+    console.log('查看class2type和Object之间的关系');
+    console.log('class2type.__proto__ === Object.prototype: ' + (class2type.__proto__ === Object.prototype));
+    console.log('class2type instanceof Object: ' + (class2type instanceof Object));
+    console.log('Object.prototype.isPrototypeOf(class2type): ' + (Object.prototype.isPrototypeOf(class2type)));
 
+    console.log('----------------------------------------');
+    console.log('查看toString');
+    console.log("class2type.hasOwnProperty('toString'): " + class2type.hasOwnProperty('toString'));
+    console.log("class2type.__proto__.hasOwnProperty('toString'): " + class2type.__proto__.hasOwnProperty('toString'));
     var toString = class2type.toString;
 
+    console.log('----------------------------------------');
+    console.log('查看hasOwnProperty');
+    console.log("class2type.hasOwnProperty('hasOwnProperty'): " + class2type.hasOwnProperty('hasOwnProperty'));
+    console.log("class2type.__proto__.hasOwnProperty('hasOwnProperty'): " + class2type.__proto__.hasOwnProperty('hasOwnProperty'));
     var hasOwn = class2type.hasOwnProperty;
 
+    console.log('----------------------------------------');
+    console.log('查看函数对象的toString');
+    console.log("hasOwn.hasOwnProperty('toString'): " + hasOwn.hasOwnProperty('toString'));
+    console.log("hasOwn.__proto__.hasOwnProperty('toString'): " + hasOwn.__proto__.hasOwnProperty('toString'));
     var fnToString = hasOwn.toString;
 
     var ObjectFunctionString = fnToString.call( Object );
