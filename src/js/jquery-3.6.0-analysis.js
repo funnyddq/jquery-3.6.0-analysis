@@ -11,6 +11,44 @@
  *
  * Date: 2021-03-02T17:08Z
  */
+
+// 查看window
+console.log("typeof window: " + typeof window);
+if (typeof window === "object") {
+    console.log("window:");
+    console.log(window);
+}
+
+// 查看global
+console.log("typeof global: " + typeof global);
+if (typeof global === "object") {
+    console.log("global:");
+    console.log(global);
+}
+
+// 查看globalThis
+console.log("typeof globalThis: " + typeof globalThis);
+if (typeof globalThis === "object") {
+    console.log("globalThis:");
+    console.log(globalThis);
+}
+
+if (typeof window === "object" && typeof global === "object")
+    console.log("window === global : " + (window === global));
+if (typeof window === "object" && typeof globalThis === "object")
+    console.log("window === globalThis : " + (window === globalThis));
+if (typeof global === "object" && typeof globalThis === "object")
+    console.log("global === globalThis : " + (global === globalThis));
+
+// 查看module
+console.log("typeof module: " + typeof module);
+if (typeof module === "object") {
+    console.log("module:");
+    console.log(module);
+    console.log("module.exports");
+    console.log(module.exports);
+}
+
 ( function( global, factory ) {
 
     "use strict";
@@ -48,8 +86,16 @@
     var arr = [];
 
     var getProto = Object.getPrototypeOf;
+    // 查看getPrototypeOf
+    console.log("Object.hasOwnProperty('getPrototypeOf'): " + Object.hasOwnProperty('getPrototypeOf'));
 
     var slice = arr.slice;
+    // 查看getPrototypeOf
+    console.log("arr.hasOwnProperty('slice'): " + arr.hasOwnProperty('slice'));
+    console.log("arr.__proto__.hasOwnProperty('slice'): " + arr.__proto__.hasOwnProperty('slice'));
+    console.log("Array.hasOwnProperty('slice'): " + Array.hasOwnProperty('slice'));
+    console.log("Array.prototype.hasOwnProperty('slice'): " + Array.prototype.hasOwnProperty('slice'));
+    console.log("arr.__proto__ === Array.prototype: " + (arr.__proto__ === Array.prototype));
 
     var flat = arr.flat ? function( array ) {
         return arr.flat.call( array );
