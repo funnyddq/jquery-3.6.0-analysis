@@ -165,7 +165,7 @@ if (typeof module === 'object') {
     console.log('Object.prototype.isPrototypeOf(class2type): ' + (Object.prototype.isPrototypeOf(class2type)));
 
     console.log('----------------------------------------');
-    console.log('查看toString');
+    console.log('查看Object.prototype.toString');
     console.log("class2type.hasOwnProperty('toString'): " + class2type.hasOwnProperty('toString'));
     console.log("class2type.__proto__.hasOwnProperty('toString'): " + class2type.__proto__.hasOwnProperty('toString'));
     var toString = class2type.toString;
@@ -177,7 +177,7 @@ if (typeof module === 'object') {
     var hasOwn = class2type.hasOwnProperty;
 
     console.log('----------------------------------------');
-    console.log('查看函数对象的toString');
+    console.log('查看Function.prototype.toString');
     console.log("hasOwn.hasOwnProperty('toString'): " + hasOwn.hasOwnProperty('toString'));
     console.log("hasOwn.__proto__.hasOwnProperty('toString'): " + hasOwn.__proto__.hasOwnProperty('toString'));
     var fnToString = hasOwn.toString;
