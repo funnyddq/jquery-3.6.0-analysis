@@ -5,12 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/myjquery.js"></script>
-    <script src="js/mycall.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-abc';">
+    <script src="js/myjquery.js" nonce="nonce-abc"></script>
+    <script src="js/mycall.js" nonce="nonce-abc"></script>
     <title>Document</title>
 </head>
 <body>
 myindex.html
 <div id="test">DIV_TEST</div>
+<script nonce="nonce-abc">alert('ok');</script>
 </body>
 </html>
