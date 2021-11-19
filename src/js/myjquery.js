@@ -14,6 +14,11 @@
         name: version
     };
 
+    jQuery.extend = jQuery.fn.extend = function() {
+        var target = arguments[0] || {};
+        return target;
+    }
+
     var init = jQuery.fn.init = function (selector, context) {
         console.log('selector: ' + selector);
         console.log('context: ' + context);
@@ -22,6 +27,8 @@
             return x;
         }
     }
+
+    init.prototype = jQuery.fn;
 
     if (typeof noGlobal === "undefined") {
         window.jQuery = window.$ = jQuery;

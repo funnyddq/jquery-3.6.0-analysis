@@ -1,4 +1,5 @@
 $(function() {
+    $();
     $('p').append('<p id="append">append</p>');
     var mynode = $('#append');
     mynode.attr('nonce', 'xxx-yyy');

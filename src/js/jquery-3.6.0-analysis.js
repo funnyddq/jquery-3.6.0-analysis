@@ -616,6 +616,11 @@ if (typeof module === 'object') {
             class2type[ "[object " + name + "]" ] = name.toLowerCase();
         } );
 
+    console.log('----------------------------------------');
+    console.log('全局变量class2type:');
+    for (let i in class2type)
+        console.log(i);
+
     function isArrayLike( obj ) {
 
         // Support: real iOS 8.2 only (not reproducible in simulator)
@@ -3346,6 +3351,7 @@ if (typeof module === 'object') {
         };
 
 // Give the init function the jQuery prototype for later instantiation
+    // new出来的init对象就是一个jQuery对象
     init.prototype = jQuery.fn;
 
 // Initialize central reference
@@ -10989,5 +10995,7 @@ if (typeof module === 'object') {
 
 
 
+    console.log('----------------------------------------');
+    console.log('$.prototype.init.prototype === $().__proto__: ' + ($.prototype.init.prototype === $().__proto__));
     return jQuery;
 } );
